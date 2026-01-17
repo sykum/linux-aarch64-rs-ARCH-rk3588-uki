@@ -1,0 +1,14 @@
+# mkinitcpio preset file for the '%PKGBASE%' package
+
+#ALL_config="/etc/mkinitcpio.conf"
+ALL_kver="%KERNVER%"
+
+PRESETS=('default' 'fallback')
+
+#default_config="/etc/mkinitcpio.conf"
+default_uki="/boot/EFI/Linux/arch-linux.efi"
+#default_options=""
+
+#fallback_config="/etc/mkinitcpio.conf"
+fallback_uki="/boot/EFI/Linux/arch-linux-fallback.efi"
+fallback_options="-S autodetect"
