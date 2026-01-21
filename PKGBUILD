@@ -9,10 +9,10 @@ pkgname=(
   "${pkgbase}"
   "${pkgbase}-headers"
 )
-_srcname=linux-6.18.5
+_srcname=linux-6.18.6
 _kernelname=${pkgbase#linux}
 _desc="AArch64 multi-platform"
-pkgver=6.18.5
+pkgver=6.18.6
 pkgrel=1
 arch=('aarch64')
 url="http://www.kernel.org/"
@@ -30,8 +30,8 @@ source=("https://cdn.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
         '005-Add-HDMI-CEC-support-to-Rockchip-RK3588-RK3576-SoCs.patch'
         '006-fix-hym8563-pinctrl.patch'
         '007-PCI-dwc-Revert-Link-Up-IRQ-support.patch')
-sha256sums=('189d1f409cef8d0d234210e04595172df392f8cb297e14b447ed95720e2fd940'
-            'd5fa8739ffa5355a9362f08286551e3c9f7a152527e088f09e40697833efb41f'
+sha256sums=('472497197b2f68d4dbf1bc32cc6dc669ca220ff4c0eb0dc39a9cff9a88f9a31b'
+            '37cc42595f230a7ab7996729efc22f2573a50e8e9da368fd25dfb19022506c53'
             'ec409dd9079403969e26c55d942082ec8a4889d5652cbf873b3a52f5d3d23b2c'
             'd8481de4a4586d0d9149e641a318df08b0d2c7687be0b32abed6b43374a6a877'
             '7a23e87702537b65bb651f4965e0eb0dca0cbebdf13f5c019139adc7faa833a9'
