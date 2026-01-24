@@ -9,10 +9,10 @@ pkgname=(
   "${pkgbase}"
   "${pkgbase}-headers"
 )
-_srcname=linux-6.18.6
+_srcname=linux-6.18.7
 _kernelname=${pkgbase#linux}
-_desc="AArch64 multi-platform"
-pkgver=6.18.6
+_desc="AArch64 rockchip"
+pkgver=6.18.7
 pkgrel=1
 arch=('aarch64')
 url="http://www.kernel.org/"
@@ -24,22 +24,24 @@ source=("https://cdn.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
         'config'
         'linux.preset'
         '001-Fix-media-uAPI-cross-references.patch'
-        '002-media-rkvdec-Add-HEVC-backend.patch'
-        '003-media-rkvdec-Add-support-for-VDPU381-and-VDPU383.patch'
+        '002-v3-media-rkvdec-Add-HEVC-backend.patch'
+        '003-v9-media-rkvdec-Add-support-for-VDPU381-and-VDPU383.patch'
         '004-arm64-dts-rockchip-Add-vdpu-381-and-383-nodes.patch'
         '005-Add-HDMI-CEC-support-to-Rockchip-RK3588-RK3576-SoCs.patch'
-        '006-fix-hym8563-pinctrl.patch'
-        '007-PCI-dwc-Revert-Link-Up-IRQ-support.patch')
-sha256sums=('472497197b2f68d4dbf1bc32cc6dc669ca220ff4c0eb0dc39a9cff9a88f9a31b'
-            '37cc42595f230a7ab7996729efc22f2573a50e8e9da368fd25dfb19022506c53'
+        '006-media-platform-rga-Add-RGA3-support.patch'
+        '007-drm-rockchip-dw_hdmi_qp-Switch-to-gpiod_set_value_cansleep.patch'
+        '008-fix-hym8563-pinctrl.patch')
+sha256sums=('b726a4d15cf9ae06219b56d87820776e34d89fbc137e55fb54a9b9c3015b8f1e'
+            '0c20427d3408000da8685fc18f0d7ee7b18489e65121f966852228e9da8b1c19'
             'ec409dd9079403969e26c55d942082ec8a4889d5652cbf873b3a52f5d3d23b2c'
             'd8481de4a4586d0d9149e641a318df08b0d2c7687be0b32abed6b43374a6a877'
             '7a23e87702537b65bb651f4965e0eb0dca0cbebdf13f5c019139adc7faa833a9'
-            '9ca614cb767965f4de9e66d48914a97f9a581311f55515bd578c9f85f802ac7d'
+            'e083d2064d80668734e1c02e36b3cc4c6b9472b9d430a309258a21a23696e804'
             '0adf05ad233b2c590a2f537e0d002292a325eab02d6796efacd02942db244c38'
             '22054c22bad89de7703daa52f6b90f4db3bed8c28dd2da256cd99b3291ca1920'
-            'a8e95f206f25ec03381d88a71bcdd09b47b2a5380891b07ca0c49feab3ea6761'
-            'a904cd3e219ca0c7e98b96a2f23ff4fdb6c21d81703fde7ca2ae3541208ae200')
+            '2b3478ce718eb667cdf046012eb5b7987c095ee648cfc416b77e316026bcf755'
+            '776568604126c131fb603e45001ca71ddfdb667015a75e5fe5890c06cfc9acf6'
+            'a8e95f206f25ec03381d88a71bcdd09b47b2a5380891b07ca0c49feab3ea6761')
 
 prepare() {
   cd $_srcname
@@ -53,15 +55,17 @@ prepare() {
     git apply --whitespace=nowarn ../patch-${pkgver}
   fi
 
-  # RK patches
-  git apply ../001-Fix-media-uAPI-cross-references.patch
-  git apply ../002-media-rkvdec-Add-HEVC-backend.patch
-  git apply ../003-media-rkvdec-Add-support-for-VDPU381-and-VDPU383.patch
-  git apply ../004-arm64-dts-rockchip-Add-vdpu-381-and-383-nodes.patch
-  git apply ../005-Add-HDMI-CEC-support-to-Rockchip-RK3588-RK3576-SoCs.patch
-  git apply ../006-fix-hym8563-pinctrl.patch
-  git apply ../007-PCI-dwc-Revert-Link-Up-IRQ-support.patch
-  
+  # RK patches 
+  git apply -v 001-Fix-media-uAPI-cross-references.patch
+  git apply -v 002-v3-media-rkvdec-Add-HEVC-backend.patch
+  git apply -v 003-v9-media-rkvdec-Add-support-for-VDPU381-and-VDPU383.patch
+  git apply -v 004-arm64-dts-rockchip-Add-vdpu-381-and-383-nodes.patch
+  git apply -v 005-Add-HDMI-CEC-support-to-Rockchip-RK3588-RK3576-SoCs.patch
+  git apply -v 006-media-platform-rga-Add-RGA3-support.patch
+  git apply -v 007-drm-rockchip-dw_hdmi_qp-Switch-to-gpiod_set_value_cansleep.patch
+  git apply -v 008-fix-hym8563-pinctrl.patch
+
+
   cat "${srcdir}/config" > ./.config
 }
 
