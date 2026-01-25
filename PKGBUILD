@@ -13,7 +13,7 @@ _srcname=linux-rs-patches-6.18
 _kernelname=${pkgbase#linux}
 _desc="AArch64 rockchip"
 pkgver=6.18.7
-pkgrel=2
+pkgrel=3
 arch=('aarch64')
 url="http://www.kernel.org/"
 license=('GPL-2.0-only')
@@ -23,7 +23,7 @@ source=("https://github.com/sykum/linux/archive/refs/heads/rs-patches-6.18.zip"
         'config'
         'linux.preset')
 sha256sums=('b5c80aa320fb446aa6d9913040b13c0fdbc5dfcc02082bbe008919e55622d7dc'
-            '006dc2f7aa32f31910abc30992e27a32680ab81c2dbb0d1c8505b5e79bec8964'
+            'ef47d876da53d8b618e9630a7cdb46dec4b3ab225f835303ffa7968faf5dc9a6'
             'ec409dd9079403969e26c55d942082ec8a4889d5652cbf873b3a52f5d3d23b2c')
 
 prepare() {
